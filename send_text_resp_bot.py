@@ -11,10 +11,22 @@ def new_message():
     # pegar a mensagem que o telegram enviou
     body = request.json
     app.logger.info(f"Chegou uma nova mensagem: {body}")
+    # escolher um texto de resposta para a mensagem recebida
+    resposta = montar_resposta(body)
     # enviar mensagem respondendo o usuário
     enviar_mensagem("Sua resposta aqui!!", body)
     # falar para o telegram que tudo ocorreu bem :)
     return {"ok": True}
+
+def montar_resposta(body):
+    if 'text' in body['message']:
+        texto_recebido = body['message']['text']
+        nome_usuario = body['message']['from']['first_name']
+        if texto_recebido == '/start':
+            return "Texto apresentando meu bot!"
+        return f"Olá, {nome_usuario}! Recebi esse texto seu: {texto_recebido}"
+    else:
+        return "Desculpe, só processo mensagens de texto"
 
 def enviar_mensagem(texto, body):
     endpoint = f"https://api.telegram.org/bot{BOT_TOKEN}/sendMessage"
