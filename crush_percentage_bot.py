@@ -24,15 +24,15 @@ def montar_resposta(body):
         texto_recebido = body['message']['text']
         nome_usuario = body['message']['from']['first_name']
         porcentagem = random.randint(0, 100)
-        if texto_recebido != '/start':
+        if texto_recebido == '/start':
             return (
-                f"Calculando amor entre *{nome_usuario}* & *{texto_recebido}*...\n\n"
-                f"Chance de match: {porcentagem}%"
+                "Olá!\n\n"
+                "Quer saber o que o futuro guarda para você e a pessoa amada?\n"
+                "Me mande o nome dela e lhe direi..."
             )
         return (
-            "Olá!\n\n"
-            "Quer saber o que o futuro guarda para você e a pessoa amada?\n"
-            "Me mande o nome dela e lhe direi..."
+            f"Calculando amor entre *{nome_usuario}* & *{texto_recebido}*...\n\n"
+            f"Chance de match: {porcentagem}%"
         )
     else:
         return "Chance de match: 0%"
