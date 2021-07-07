@@ -14,7 +14,7 @@ def new_message():
     # escolher um texto de resposta para a mensagem recebida
     resposta = montar_resposta(body)
     # enviar mensagem respondendo o usuário
-    enviar_mensagem("Sua resposta aqui!!", body)
+    enviar_mensagem(resposta, body)
     # falar para o telegram que tudo ocorreu bem :)
     return {"ok": True}
 
